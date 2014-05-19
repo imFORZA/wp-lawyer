@@ -2,7 +2,7 @@
 
 /*!-----------------------------------------------------------------------------------
 
-  Plugin Name: WordPress SEO
+  Plugin Name: WP-Lawyer
   Version: 1.0.0
   Plugin URI: https://github.com/bhubbard/wp-lawyer
   Description: A custom WordPress plugin for lawyers and Law Firms.
