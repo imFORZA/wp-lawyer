@@ -102,7 +102,52 @@ add_action( 'init', 'wp_lawyer_cases_casetype', 0 );
 
 
 
+################################################################################
+// Setup Case Resolutions Taxonomy
+################################################################################
+if ( ! function_exists( 'wplawyer_case_resolution' ) ) {
 
+// Register Custom Taxonomy
+function wplawyer_case_resolution() {
+
+	$labels = array(
+		'name'                       => _x( 'Resolutions', 'Taxonomy General Name', 'wp-lawyer' ),
+		'singular_name'              => _x( 'Resolution', 'Taxonomy Singular Name', 'wp-lawyer' ),
+		'menu_name'                  => __( 'Resolutions', 'wp-lawyer' ),
+		'all_items'                  => __( 'All Resolutions', 'wp-lawyer' ),
+		'parent_item'                => __( 'Parent Resolution', 'wp-lawyer' ),
+		'parent_item_colon'          => __( 'Parent Resolution:', 'wp-lawyer' ),
+		'new_item_name'              => __( 'New Resolution Name', 'wp-lawyer' ),
+		'add_new_item'               => __( 'Add New Resolution', 'wp-lawyer' ),
+		'edit_item'                  => __( 'Edit Resolution', 'wp-lawyer' ),
+		'update_item'                => __( 'Update Resolution', 'wp-lawyer' ),
+		'separate_items_with_commas' => __( 'Separate Resolutions with commas', 'wp-lawyer' ),
+		'search_items'               => __( 'Search Resolutions', 'wp-lawyer' ),
+		'add_or_remove_items'        => __( 'Add or remove Resolutions', 'wp-lawyer' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Resolutions', 'wp-lawyer' ),
+		'not_found'                  => __( 'No Resolutions Found', 'wp-lawyer' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => true,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+		'rewrite' => array('slug'=>'cases/resolution', 'with_front' => false)
+	);
+	register_taxonomy( 'wplawyer-case-resolution', array( 'wplawyer-cases' ), $args );
+	
+	wp_insert_term('Settlement', 'wplawyer-case-resolution');
+	wp_insert_term('Jury Verdict', 'wplawyer-case-resolution');
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'wplawyer_case_resolution', 0 );
+
+}
 
 
 
