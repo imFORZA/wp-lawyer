@@ -100,3 +100,122 @@ add_action( 'init', 'wp_lawyer_cases_casetype', 0 );
 
 }
 
+
+
+
+
+
+
+################################################################################
+// Setup Meta Boxes
+################################################################################
+
+$wplawyer_case_prefix = 'wplawyer_';
+/* Sets up all of custom data fields in the admin edit page. If you need new fields, here would be the place to add it, in the form of an array. */
+$wplawyer_case_meta_box = array(
+    'id' => 'case-details',
+    'title' => 'Case Details',
+    'page' => 'wplawyer-cases',
+    'context' => 'normal',
+    'priority' => 'high',
+    'fields' => array(
+        array(
+            'name' => 'Verdict Price',
+            'id' => $wplawyer_case_prefix . 'case_verdict_price',
+            'type' => 'text',
+            'std' => ''
+        ),
+        array(
+            'name' => 'Plantiff',
+            'id' => $wplawyer_case_prefix . 'case_plantiff',
+            'type' => 'text',
+            'std' => ''
+        ),
+    	array(
+            'name' => 'Defendent',
+            'id' => $wplawyer_case_prefix . 'case_defendent',
+            'type' => 'text',
+            'std' => ''
+        ),
+    )
+);
+add_action('admin_menu', 'wplawyer_add_case_metaboxes');
+
+
+################################################################################
+// Add Meta Box
+################################################################################
+function wplawyer_add_case_metaboxes() {
+    global $wplawyer_case_meta_box;
+    add_meta_box($wplawyer_case_meta_box['id'], $wplawyer_case_meta_box['title'], 'wplawyer_case_show_box', $wplawyer_case_meta_box['page'], $wplawyer_case_meta_box['context'], $wplawyer_case_meta_box['priority']);
+}
+
+// Callback function to show fields in meta box
+function wplawyer_case_show_box() {
+    global $wplawyer_case_meta_box, $post;
+
+    // Use nonce for verification
+    echo '<input type="hidden" name="wplawyer_case_meta_box_nonce" value="', wp_create_nonce(basename(__FILE__)), '" />';
+
+    echo '<table class="form-table" style="overflow:hidden;">';
+
+	foreach ($wplawyer_case_meta_box['fields'] as $field) {
+		// get current post meta data
+		$wplawyer_case_meta = get_post_meta($post->ID, $field['id'], true);
+
+
+		switch ($field['type']) {
+
+			case 'text':
+				echo '<tr>',
+				'<th style="width:15%"><label for="', $field['id'], '">', $field['name'], '</label></th>',
+				'<td>';
+				echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $wplawyer_case_meta ? $wplawyer_case_meta : $field['std'], '" size="20" style="width:50%; min-width:150px;" />', '<br />', isset($field['desc']);
+				echo     '</td>','</tr>';
+			break;
+			case 'social_one':
+				echo '<tr><td colspan="2"><hr style="background:#ddd; border:0px; height:1px; position:relative; width:100%;" /><h4>Social Media Profiles</h4></td></tr>', '<tr>', '<th style="width:15%"><label for="', $field['id'], '">', $field['name'], '</label></th>', '<td>';
+				echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $wplawyer_case_meta ? $wplawyer_case_meta : $field['std'], '" size="20" style="width:50%; min-width:150px;" />', '<br />', isset($field['desc']);
+				echo     '</td>','</tr>';
+			break;
+
+		}
+
+	}
+	echo '</table>';
+	}
+
+
+################################################################################
+// Save MetaBox Data
+################################################################################
+add_action('save_post', 'wplawyer_case_save_data');
+// Save data from meta box
+function wplawyer_case_save_data($post_id) {
+    global $wplawyer_case_meta_box;
+    // verify nonce
+    if (!wp_verify_nonce( $_POST['wplawyer_case_meta_box_nonce'], basename(__FILE__))) {
+        return $post_id;
+    }
+    // check autosave
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return $post_id;
+    }
+    // check permissions
+    if ('page' == $_POST['post_type']) {
+        if (!current_user_can('edit_page', $post_id)) {
+            return $post_id;
+        }
+    } elseif (!current_user_can('edit_post', $post_id)) {
+        return $post_id;
+    }
+    foreach ($wplawyer_case_meta_box['fields'] as $field) {
+        $wplawyer_case_old = get_post_meta($post_id, $field['id'], true);
+        $wplawyer_case_new = $_POST[$field['id']];
+        if ($wplawyer_case_new && $wplawyer_case_new != $wplawyer_case_old) {
+            update_post_meta($post_id, $field['id'], $wplawyer_case_new);
+        } elseif ('' == $wplawyer_case_new && $wplawyer_case_old) {
+            delete_post_meta($post_id, $field['id'], $wplawyer_case_old);
+        }
+    }
+}
