@@ -37,12 +37,13 @@ function wp_lawyer_attorneys_cpt() {
 		'show_in_admin_bar'   => true,
 		'menu_position'       => 5,
 		'menu_icon'           => plugins_url( '../assets/images/attorney-icon.png' , __FILE__ ),
-		'register_meta_box_cb' => 'wplawyer_add_attorney_metaboxes',
+		//'register_meta_box_cb' => 'wplawyer_add_attorney_metaboxes',
 		'can_export'          => true,
 		'has_archive'         => true,
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
 		'capability_type'     => 'page',
+		'rewrite' => array('slug'=>'attorney', 'with_front' => false)
 	);
 	register_post_type( 'wplawyer-attorney', $args );
 
@@ -88,6 +89,7 @@ function wp_lawyer_attorneys_practicearea() {
 		'show_admin_column'          => true,
 		'show_in_nav_menus'          => true,
 		'show_tagcloud'              => true,
+		'rewrite' => array('slug'=>'attorneys/area-of-practice', 'with_front' => false)
 	);
 	register_taxonomy( 'wplawyer-practice-area', array( 'wplawyer-attorney' ), $args );
 	
@@ -116,9 +118,45 @@ $wplawyer_attorney_meta_box = array(
     'context' => 'normal',
     'priority' => 'high',
     'fields' => array(
+        array(
+            'name' => 'Title',
+            'id' => $wplawyer_attorney_prefix . 'attorney_title',
+            'type' => 'text',
+            'std' => ''
+        ),
+        array(
+            'name' => 'Bar Number',
+            'id' => $wplawyer_attorney_prefix . 'attorney_bar_number',
+            'type' => 'text',
+            'std' => ''
+        ),
     	array(
             'name' => 'Address',
             'id' => $wplawyer_attorney_prefix . 'attorney_address',
+            'type' => 'text',
+            'std' => ''
+        ),
+        array(
+            'name' => 'County',
+            'id' => $wplawyer_attorney_prefix . 'attorney_county',
+            'type' => 'text',
+            'std' => ''
+        ),
+        array(
+            'name' => 'District',
+            'id' => $wplawyer_attorney_prefix . 'attorney_district',
+            'type' => 'text',
+            'std' => ''
+        ),
+        array(
+            'name' => 'Undergraduate School',
+            'id' => $wplawyer_attorney_prefix . 'attorney_undergraduate_school',
+            'type' => 'text',
+            'std' => ''
+        ),
+        array(
+            'name' => 'Law School',
+            'id' => $wplawyer_attorney_prefix . 'attorney_law_school',
             'type' => 'text',
             'std' => ''
         ),
@@ -203,12 +241,12 @@ function wplawyer_attorney_show_box() {
 				echo '<tr>',
 				'<th style="width:15%"><label for="', $field['id'], '">', $field['name'], '</label></th>',
 				'<td>';
-				echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $wplawyer_attorney_meta ? $wplawyer_attorney_meta : $field['std'], '" size="20" style="width:20%; min-width:150px;" />', '<br />', isset($field['desc']);
+				echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $wplawyer_attorney_meta ? $wplawyer_attorney_meta : $field['std'], '" size="20" style="width:50%; min-width:150px;" />', '<br />', isset($field['desc']);
 				echo     '</td>','</tr>';
 			break;
 			case 'social_one':
 				echo '<tr><td colspan="2"><hr style="background:#ddd; border:0px; height:1px; position:relative; width:100%;" /><h4>Social Media Profiles</h4></td></tr>', '<tr>', '<th style="width:15%"><label for="', $field['id'], '">', $field['name'], '</label></th>', '<td>';
-				echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $wplawyer_attorney_meta ? $wplawyer_attorney_meta : $field['std'], '" size="20" style="width:20%; min-width:150px;" />', '<br />', isset($field['desc']);
+				echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $wplawyer_attorney_meta ? $wplawyer_attorney_meta : $field['std'], '" size="20" style="width:50%; min-width:150px;" />', '<br />', isset($field['desc']);
 				echo     '</td>','</tr>';
 			break;
 
