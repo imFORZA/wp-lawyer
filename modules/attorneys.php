@@ -500,16 +500,15 @@ function wplawyer_attorney_save_data($post_id) {
 
 function wplawyer_attorney_title() {
 	$wplawyer_attorney_title = get_post_meta(get_the_ID(), 'wplawyer_attorney_title', true);
-	if ($the_agent_position == '') { } else {
-		echo '<span class="attorney-title">' . $wplawyer_attorney_title . '</span>';
+	if ($plawyer_attorney_title == '') { } else {
+		echo '<span id="attorney-title">' . $wplawyer_attorney_title . '</span>';
 	}
 }
 
 
 function wplawyer_attorney_email() {
 	$wplawyer_attorney_email = get_post_meta(get_the_ID(), 'wplawyer_attorney_email', true);
-	$wplawyer_attorney_email = $get_agent_email;
-	if ($twplawyer_attorney_email == '') { } else {
-		echo '<span class="agent-email"><a href="mailto:'.$wplawyer_attorney_email.'">'. $wplawyer_attorney_email .'</a></span>';
+	if ($wplawyer_attorney_email == '') { } else {
+		echo '<a id="attorney-email" href="mailto:'. antispambot($wplawyer_attorney_email) .'">'. antispambot($wplawyer_attorney_email) .'</a>';
 	 }
 }
