@@ -7,7 +7,7 @@
   Plugin URI: https://github.com/imforza/wp-lawyer
   Description: A custom WordPress plugin for Lawyers and Law Firms.
   Author: imFORZA
-  Author URI: //wp-lawyer.com
+  Author URI: //www.imforza.com
   Text Domain: wp-lawyer
   Domain Path: /languages/
   License: GPL v3
