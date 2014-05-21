@@ -21,18 +21,19 @@ dfsdff
 		
 		<?php the_content(); ?>
 		
-		
-		<?php wplawyer_attorney_title(); ?>
-		<?php wplawyer_attorney_bar_number(); ?>
-		<?php wplawyer_attorney_address(); ?>
-		<?php wplawyer_attorney_email(); ?>
-		<?php wplawyer_attorney_mobile(); ?>
-		<?php wplawyer_attorney_fax(); ?>
-		<?php wplawyer_attorney_website(); ?>
-		<?php wplawyer_attorney_facebook(); ?>
-		<?php wplawyer_attorney_twitter(); ?>
-		<?php wplawyer_attorney_linkedin(); ?>
-		<?php wplawyer_attorney_youtube(); ?>
+		<ul>
+		<li><strong>Title: </strong><?php wplawyer_attorney_title(); ?></li>
+		<li><strong>Bar: </strong><?php wplawyer_attorney_bar_number(); ?></li>
+		<li><?php wplawyer_attorney_address(); ?></li>
+		<li><?php wplawyer_attorney_email(); ?></li>
+		<li><?php wplawyer_attorney_mobile(); ?></li>
+		<li><?php wplawyer_attorney_fax(); ?></li>
+		<li><?php wplawyer_attorney_website(); ?></li>
+		<li><?php wplawyer_attorney_facebook(); ?></li>
+		<li><?php wplawyer_attorney_twitter(); ?></li>
+		<li><?php wplawyer_attorney_linkedin(); ?></li>
+		<li><?php wplawyer_attorney_youtube(); ?></li>
+		</ul>
 		
 		
 		<h3>Areas of Practice</h3>
