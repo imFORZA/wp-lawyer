@@ -4,10 +4,10 @@
 
   Plugin Name: WP Lawyer
   Version: 1.0.0
-  Plugin URI: https://github.com/bhubbard/wp-lawyer
+  Plugin URI: https://github.com/imforza/wp-lawyer
   Description: A custom WordPress plugin for Lawyers and Law Firms.
-  Author: Brandon Hubbard
-  Author URI: https://wp-lawyer.com/
+  Author: imFORZA
+  Author URI: //wp-lawyer.com
   Text Domain: wp-lawyer
   Domain Path: /languages/
   License: GPL v3
