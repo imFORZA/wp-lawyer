@@ -261,12 +261,6 @@ function wplawyer_case_show_box() {
 				echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $wplawyer_case_meta ? $wplawyer_case_meta : $field['std'], '" size="20" style="width:50%; min-width:150px;" />', '<br />', isset($field['desc']);
 				echo     '</td>','</tr>';
 			break;
-			case 'social_one':
-				echo '<tr><td colspan="2"><hr style="background:#ddd; border:0px; height:1px; position:relative; width:100%;" /><h4>Social Media Profiles</h4></td></tr>', '<tr>', '<th style="width:15%"><label for="', $field['id'], '">', $field['name'], '</label></th>', '<td>';
-				echo '<input type="text" name="', $field['id'], '" id="', $field['id'], '" value="', $wplawyer_case_meta ? $wplawyer_case_meta : $field['std'], '" size="20" style="width:50%; min-width:150px;" />', '<br />', isset($field['desc']);
-				echo     '</td>','</tr>';
-			break;
-
 		}
 
 	}
@@ -278,7 +272,7 @@ function wplawyer_case_show_box() {
 // Save MetaBox Data
 ################################################################################
 add_action('save_post', 'wplawyer_case_save_data');
-// Save data from meta box
+
 function wplawyer_case_save_data($post_id) {
     global $wplawyer_case_meta_box;
     

@@ -458,7 +458,7 @@ function wplawyer_attorney_show_box() {
 // Save MetaBox Data
 ################################################################################
 add_action('save_post', 'wplawyer_attorney_save_data');
-// Save data from meta box
+
 function wplawyer_attorney_save_data($post_id) {
     global $wplawyer_attorney_meta_box;
     
