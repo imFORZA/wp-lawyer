@@ -105,6 +105,227 @@ add_action( 'init', 'wp_lawyer_attorneys_practicearea', 0 );
 }
 
 
+###########################################################
+// Cities of Practice - Taxonomy
+###########################################################
+if ( ! function_exists( 'wplawyer_attorney_city' ) ) {
+
+// Register Custom Taxonomy
+function wplawyer_attorney_city() {
+
+	$labels = array(
+		'name'                       => _x( 'Cities of Practice', 'Taxonomy General Name', 'wp-lawyer' ),
+		'singular_name'              => _x( 'City', 'Taxonomy Singular Name', 'wp-lawyer' ),
+		'menu_name'                  => __( 'Cities of Practice', 'wp-lawyer' ),
+		'all_items'                  => __( 'All Cities', 'wp-lawyer' ),
+		'parent_item'                => __( 'Parent City', 'wp-lawyer' ),
+		'parent_item_colon'          => __( 'Parent City:', 'wp-lawyer' ),
+		'new_item_name'              => __( 'New City', 'wp-lawyer' ),
+		'add_new_item'               => __( 'Add New City', 'wp-lawyer' ),
+		'edit_item'                  => __( 'Edit City', 'wp-lawyer' ),
+		'update_item'                => __( 'Update City', 'wp-lawyer' ),
+		'separate_items_with_commas' => __( 'Separate Cities with commas', 'wp-lawyer' ),
+		'search_items'               => __( 'Search Cities', 'wp-lawyer' ),
+		'add_or_remove_items'        => __( 'Add or remove Cities', 'wp-lawyer' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Cities', 'wp-lawyer' ),
+		'not_found'                  => __( 'No City Found', 'wp-lawyer' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'wplawyer-attorney-city', array( 'wplawyer-attorney' ), $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'wplawyer_attorney_city', 0 );
+
+}
+
+
+###########################################################
+// Counties of Practice - Taxonomy
+###########################################################
+if ( ! function_exists( 'wplawyer_attorney_county' ) ) {
+
+// Register Custom Taxonomy
+function wplawyer_attorney_county() {
+
+	$labels = array(
+		'name'                       => _x( 'Counties of Practice', 'Taxonomy General Name', 'wp-lawyer' ),
+		'singular_name'              => _x( 'County', 'Taxonomy Singular Name', 'wp-lawyer' ),
+		'menu_name'                  => __( 'Counties of Practice', 'wp-lawyer' ),
+		'all_items'                  => __( 'All Counties', 'wp-lawyer' ),
+		'parent_item'                => __( 'Parent County', 'wp-lawyer' ),
+		'parent_item_colon'          => __( 'Parent County:', 'wp-lawyer' ),
+		'new_item_name'              => __( 'New County Name', 'wp-lawyer' ),
+		'add_new_item'               => __( 'Add New County', 'wp-lawyer' ),
+		'edit_item'                  => __( 'Edit County', 'wp-lawyer' ),
+		'update_item'                => __( 'Update County', 'wp-lawyer' ),
+		'separate_items_with_commas' => __( 'Separate Counties with commas', 'wp-lawyer' ),
+		'search_items'               => __( 'Search Counties', 'wp-lawyer' ),
+		'add_or_remove_items'        => __( 'Add or remove Counties', 'wp-lawyer' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Counties', 'wp-lawyer' ),
+		'not_found'                  => __( 'No County Found', 'wp-lawyer' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'wplawyer-attorney-county', array( 'wplawyer-attorney' ), $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'wplawyer_attorney_county', 0 );
+
+}
+
+
+
+###########################################################
+// Attorney District - Taxonomy
+###########################################################
+if ( ! function_exists( 'wplawyer_attorney_district' ) ) {
+
+// Register Custom Taxonomy
+function wplawyer_attorney_district() {
+
+	$labels = array(
+		'name'                       => _x( 'Districts', 'Taxonomy General Name', 'wp-lawyer' ),
+		'singular_name'              => _x( 'district', 'Taxonomy Singular Name', 'wp-lawyer' ),
+		'menu_name'                  => __( 'Districts', 'wp-lawyer' ),
+		'all_items'                  => __( 'All Districts', 'wp-lawyer' ),
+		'parent_item'                => __( 'Parent district', 'wp-lawyer' ),
+		'parent_item_colon'          => __( 'Parent district:', 'wp-lawyer' ),
+		'new_item_name'              => __( 'New district Name', 'wp-lawyer' ),
+		'add_new_item'               => __( 'Add New district', 'wp-lawyer' ),
+		'edit_item'                  => __( 'Edit district', 'wp-lawyer' ),
+		'update_item'                => __( 'Update district', 'wp-lawyer' ),
+		'separate_items_with_commas' => __( 'Separate Districts with commas', 'wp-lawyer' ),
+		'search_items'               => __( 'Search Districts', 'wp-lawyer' ),
+		'add_or_remove_items'        => __( 'Add or remove Districts', 'wp-lawyer' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Districts', 'wp-lawyer' ),
+		'not_found'                  => __( 'No District Found', 'wp-lawyer' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'wplawyer-attorney-district', array( 'wplawyer-attorney' ), $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'wplawyer_attorney_district', 0 );
+
+}
+
+
+################################################################################
+// Law School - Taxonomy
+################################################################################
+if ( ! function_exists( 'wplawyer_attorney_lawschool' ) ) {
+
+// Register Custom Taxonomy
+function wplawyer_attorney_lawschool() {
+
+	$labels = array(
+		'name'                       => _x( 'Law Schools', 'Taxonomy General Name', 'wp-lawyer' ),
+		'singular_name'              => _x( 'Law School', 'Taxonomy Singular Name', 'wp-lawyer' ),
+		'menu_name'                  => __( 'Law Schools', 'wp-lawyer' ),
+		'all_items'                  => __( 'All Law Schools', 'wp-lawyer' ),
+		'parent_item'                => __( 'Parent Law School', 'wp-lawyer' ),
+		'parent_item_colon'          => __( 'Parent Law School:', 'wp-lawyer' ),
+		'new_item_name'              => __( 'New Law School', 'wp-lawyer' ),
+		'add_new_item'               => __( 'Add New Law School', 'wp-lawyer' ),
+		'edit_item'                  => __( 'Edit Law School', 'wp-lawyer' ),
+		'update_item'                => __( 'Update Law School', 'wp-lawyer' ),
+		'separate_items_with_commas' => __( 'Separate Law Schools with commas', 'wp-lawyer' ),
+		'search_items'               => __( 'Search Law School', 'wp-lawyer' ),
+		'add_or_remove_items'        => __( 'Add or remove Law Schools', 'wp-lawyer' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Law Schools', 'wp-lawyer' ),
+		'not_found'                  => __( 'No Law Schools Found', 'wp-lawyer' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'wplawyer-attorney-lawschool', array( 'wplawyer-attorney' ), $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'wplawyer_attorney_lawschool', 0 );
+
+}
+
+
+################################################################################
+// Undergraduate Schools - Taxonomy
+################################################################################
+if ( ! function_exists( 'wplawyer_attorney_undergraduateschool' ) ) {
+
+// Register Custom Taxonomy
+function wplawyer_attorney_undergraduateschool() {
+
+	$labels = array(
+		'name'                       => _x( 'Undergraduate Schools', 'Taxonomy General Name', 'wp-lawyer' ),
+		'singular_name'              => _x( 'Undergraduate School', 'Taxonomy Singular Name', 'wp-lawyer' ),
+		'menu_name'                  => __( 'Undergraduate Schools', 'wp-lawyer' ),
+		'all_items'                  => __( 'All Undergraduate Schools', 'wp-lawyer' ),
+		'parent_item'                => __( 'Parent Undergraduate School', 'wp-lawyer' ),
+		'parent_item_colon'          => __( 'Parent Undergraduate School:', 'wp-lawyer' ),
+		'new_item_name'              => __( 'New Undergraduate School', 'wp-lawyer' ),
+		'add_new_item'               => __( 'Add New Undergraduate School', 'wp-lawyer' ),
+		'edit_item'                  => __( 'Edit Undergraduate School', 'wp-lawyer' ),
+		'update_item'                => __( 'Update Undergraduate School', 'wp-lawyer' ),
+		'separate_items_with_commas' => __( 'Separate Undergraduate Schools with commas', 'wp-lawyer' ),
+		'search_items'               => __( 'Search Undergraduate School', 'wp-lawyer' ),
+		'add_or_remove_items'        => __( 'Add or remove Undergraduate Schools', 'wp-lawyer' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Undergraduate Schools', 'wp-lawyer' ),
+		'not_found'                  => __( 'No Undergraduate Schools Found', 'wp-lawyer' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'wplawyer-attorney-undergrad', array( 'wplawyer-attorney' ), $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'wplawyer_attorney_undergraduateschool', 0 );
+
+}
+
+
 ################################################################################
 // Setup Meta Boxes
 ################################################################################
@@ -133,30 +354,6 @@ $wplawyer_attorney_meta_box = array(
     	array(
             'name' => 'Address',
             'id' => $wplawyer_attorney_prefix . 'attorney_address',
-            'type' => 'text',
-            'std' => ''
-        ),
-        array(
-            'name' => 'County',
-            'id' => $wplawyer_attorney_prefix . 'attorney_county',
-            'type' => 'text',
-            'std' => ''
-        ),
-        array(
-            'name' => 'District',
-            'id' => $wplawyer_attorney_prefix . 'attorney_district',
-            'type' => 'text',
-            'std' => ''
-        ),
-        array(
-            'name' => 'Undergraduate School',
-            'id' => $wplawyer_attorney_prefix . 'attorney_undergraduate_school',
-            'type' => 'text',
-            'std' => ''
-        ),
-        array(
-            'name' => 'Law School',
-            'id' => $wplawyer_attorney_prefix . 'attorney_law_school',
             'type' => 'text',
             'std' => ''
         ),
@@ -289,4 +486,28 @@ function wplawyer_attorney_save_data($post_id) {
             delete_post_meta($post_id, $field['id'], $wplawyer_attorney_old);
         }
     }
+}
+
+
+
+
+
+
+
+################################################################################
+// Template Functions
+################################################################################
+
+function wplawyer_attorney_title() {
+	$wplawyer_attorney_title = get_post_meta(get_the_ID(), 'wplawyer_attorney_title', true);
+	if ($the_agent_position == '') { } else {
+		echo '<span class="attorney-title">' . $wplawyer_attorney_title . '</span>';
+	}
+}
+function the_agent_email() {
+	$get_agent_email = get_post_meta(get_the_ID(), 'dbta_agent_email', true);
+	$the_agent_email = $get_agent_email;
+	if ($the_agent_email == '') { } else {
+		echo '<li class="agent-email"><a href="mailto:',$the_agent_email,'">Email Me</a></li>';
+	 }
 }

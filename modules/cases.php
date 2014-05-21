@@ -149,6 +149,49 @@ add_action( 'init', 'wplawyer_case_resolution', 0 );
 
 }
 
+###########################################################
+// Courthouse - Taxonomy
+###########################################################
+if ( ! function_exists( 'wplawyer_cases_courthouse' ) ) {
+
+// Register Custom Taxonomy
+function wplawyer_cases_courthouse() {
+
+	$labels = array(
+		'name'                       => _x( 'Court House', 'Taxonomy General Name', 'wp-lawyer' ),
+		'singular_name'              => _x( 'Courthouse', 'Taxonomy Singular Name', 'wp-lawyer' ),
+		'menu_name'                  => __( 'Court Houses', 'wp-lawyer' ),
+		'all_items'                  => __( 'All Court Houses', 'wp-lawyer' ),
+		'parent_item'                => __( 'Parent Courthouse', 'wp-lawyer' ),
+		'parent_item_colon'          => __( 'Parent Courthouse:', 'wp-lawyer' ),
+		'new_item_name'              => __( 'New Courthouse', 'wp-lawyer' ),
+		'add_new_item'               => __( 'Add New Courthouse', 'wp-lawyer' ),
+		'edit_item'                  => __( 'Edit Courthouse', 'wp-lawyer' ),
+		'update_item'                => __( 'Update Courthouse', 'wp-lawyer' ),
+		'separate_items_with_commas' => __( 'Separate Court Houses with commas', 'wp-lawyer' ),
+		'search_items'               => __( 'Search Court Houses', 'wp-lawyer' ),
+		'add_or_remove_items'        => __( 'Add or remove Court Houses', 'wp-lawyer' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Court Houses', 'wp-lawyer' ),
+		'not_found'                  => __( 'No Court Houses Found', 'wp-lawyer' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'wplawyer-cases-courthouse', array( 'wplawyer-cases' ), $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'wplawyer_cases_courthouse', 0 );
+
+}
+
 
 
 ################################################################################
