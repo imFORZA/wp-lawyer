@@ -461,26 +461,30 @@ add_action('save_post', 'wplawyer_attorney_save_data');
 // Save data from meta box
 function wplawyer_attorney_save_data($post_id) {
     global $wplawyer_attorney_meta_box;
-    // verify nonce
-    if (!wp_verify_nonce( $_POST['wplawyer_attorney_meta_box_nonce'], basename(__FILE__))) {
+    
+    // Verify Nonce
+    if ( isset($_POST['wplawyer_attorney_meta_box_nonce']) && !wp_verify_nonce( $_POST['wplawyer_attorney_meta_box_nonce'], basename(__FILE__))) {
         return $post_id;
     }
+    
     // check autosave
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return $post_id;
-    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+    return;
+    
     // check permissions
-    if ('page' == $_POST['post_type']) {
-        if (!current_user_can('edit_page', $post_id)) {
-            return $post_id;
-        }
-    } elseif (!current_user_can('edit_post', $post_id)) {
-        return $post_id;
-    }
+    if (!current_user_can('edit_post', $post_id))
+    return;
+    
     foreach ($wplawyer_attorney_meta_box['fields'] as $field) {
         $wplawyer_attorney_old = get_post_meta($post_id, $field['id'], true);
-        $wplawyer_attorney_new = $_POST[$field['id']];
-        if ($wplawyer_attorney_new && $wplawyer_attorney_new != $wplawyer_attorney_old) {
+        
+        if (!empty($_POST[$field['id']])) {
+		$wplawyer_attorney_new = $_POST[$field['id']];   
+		} else {
+			$wplawyer_attorney_new = '';
+		}
+		
+        if ( $wplawyer_attorney_new && $wplawyer_attorney_new != $wplawyer_attorney_old) {
             update_post_meta($post_id, $field['id'], $wplawyer_attorney_new);
         } elseif ('' == $wplawyer_attorney_new && $wplawyer_attorney_old) {
             delete_post_meta($post_id, $field['id'], $wplawyer_attorney_old);

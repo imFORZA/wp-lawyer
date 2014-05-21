@@ -37,7 +37,7 @@ function wp_lawyer_cases_cpt() {
 		'show_in_admin_bar'   => true,
 		'menu_position'       => 5,
 		'menu_icon'           => plugins_url( '../assets/images/cases-icon.png' , __FILE__ ),
-		'register_meta_box_cb' => 'wplawyer_add_cases_metaboxes',
+		// 'register_meta_box_cb' => 'wplawyer_add_cases_metaboxes',
 		'can_export'          => true,
 		'has_archive'         => true,
 		'exclude_from_search' => false,
@@ -281,25 +281,28 @@ add_action('save_post', 'wplawyer_case_save_data');
 // Save data from meta box
 function wplawyer_case_save_data($post_id) {
     global $wplawyer_case_meta_box;
+    
     // verify nonce
-    if (!wp_verify_nonce( $_POST['wplawyer_case_meta_box_nonce'], basename(__FILE__))) {
+    if (isset($_POST['wplawyer_case_meta_box_nonce']) && !wp_verify_nonce( $_POST['wplawyer_case_meta_box_nonce'], basename(__FILE__))) {
         return $post_id;
     }
     // check autosave
-    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-        return $post_id;
-    }
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+    return;
+    
     // check permissions
-    if ('page' == $_POST['post_type']) {
-        if (!current_user_can('edit_page', $post_id)) {
-            return $post_id;
-        }
-    } elseif (!current_user_can('edit_post', $post_id)) {
-        return $post_id;
-    }
+    if (!current_user_can('edit_post', $post_id))
+    return;
+    
     foreach ($wplawyer_case_meta_box['fields'] as $field) {
         $wplawyer_case_old = get_post_meta($post_id, $field['id'], true);
-        $wplawyer_case_new = $_POST[$field['id']];
+        
+        if (!empty($_POST[$field['id']])) {
+			   $wplawyer_case_new = $_POST[$field['id']]; 
+		} else {
+			$wplawyer_case_new = '';
+		}
+
         if ($wplawyer_case_new && $wplawyer_case_new != $wplawyer_case_old) {
             update_post_meta($post_id, $field['id'], $wplawyer_case_new);
         } elseif ('' == $wplawyer_case_new && $wplawyer_case_old) {
