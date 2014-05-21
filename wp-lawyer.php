@@ -4,7 +4,7 @@
 
   Plugin Name: WP Lawyer
   Version: 1.0.0
-  Plugin URI: https://github.com/imforza/wp-lawyer
+  Plugin URI: //wp-lawyer.com
   Description: A custom WordPress plugin for Lawyers and Law Firms.
   Author: imFORZA
   Author URI: //www.imforza.com
