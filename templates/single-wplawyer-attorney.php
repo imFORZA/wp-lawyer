@@ -19,16 +19,16 @@ dfsdff
 		
 		
 		<?php wplawyer_attorney_title(); ?>
-<?php wplawyer_attorney_bar_number(); ?>
-<?php wplawyer_attorney_address(); ?>
-<?php wplawyer_attorney_email(); ?>
-<?php wplawyer_attorney_mobile(); ?>
-<?php wplawyer_attorney_fax(); ?>
-<?php wplawyer_attorney_website(); ?>
-<?php wplawyer_attorney_facebook(); ?>
-<?php wplawyer_attorney_twitter(); ?>
-<?php wplawyer_attorney_linkedin(); ?>
-<?php wplawyer_attorney_youtube(); ?>
+		<?php wplawyer_attorney_bar_number(); ?>
+		<?php wplawyer_attorney_address(); ?>
+		<?php wplawyer_attorney_email(); ?>
+		<?php wplawyer_attorney_mobile(); ?>
+		<?php wplawyer_attorney_fax(); ?>
+		<?php wplawyer_attorney_website(); ?>
+		<?php wplawyer_attorney_facebook(); ?>
+		<?php wplawyer_attorney_twitter(); ?>
+		<?php wplawyer_attorney_linkedin(); ?>
+		<?php wplawyer_attorney_youtube(); ?>
 		
 		
 	<?php endwhile; else: ?>
