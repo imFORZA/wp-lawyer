@@ -1,17 +1,21 @@
 <?php get_header(); ?>
 
-			<div class="content">
+	
 			
 <?php if (have_posts()) : while (have_posts()) : the_post(); ?>
+
+
+
+		
+		
 				<h1><?php the_title(); ?></h1>
 			
 dfsdff
 
 		
 		
-		<?php if ( has_post_thumbnail()) : ?>
-						<?php the_post_thumbnail('wplawyer-attorney'); ?>
-					<?php else : endif; ?>
+		<?php if ( has_post_thumbnail()) : the_post_thumbnail('wplawyer-attorney'); else : endif; ?>
+		
 						
 		
 		
@@ -31,13 +35,32 @@ dfsdff
 		<?php wplawyer_attorney_youtube(); ?>
 		
 		
-	<?php endwhile; else: ?>
+		<h3>Areas of Practice</h3>
+		<?php echo get_the_term_list( get_the_ID(), 'wplawyer-practice-area', ' ', ', ', '' ); ?>
+		
+		<h3>Cities of Practice</h3>
+		<?php echo get_the_term_list( get_the_ID(), 'wplawyer-attorney-city', ' ', ', ', '' ); ?>
+		
+		<h3>Counties of Practice</h3>
+		<?php echo get_the_term_list( get_the_ID(), 'wplawyer-attorney-county', ' ', ', ', '' ); ?>
+		
+		<h3>Districts</h3>
+		<?php echo get_the_term_list( get_the_ID(), 'wplawyer-attorney-district', ' ', ', ', '' ); ?>
+		
+		<h3>Law School</h3>
+		<?php echo get_the_term_list( get_the_ID(), 'wplawyer-attorney-lawschool', ' ', ', ', '' ); ?>
+		
+		<h3>Undergrad School</h3>
+		<?php echo get_the_term_list( get_the_ID(), 'wplawyer-attorney-undergrad', ' ', ', ', '' ); ?>
+		
 
-				<p>Sorry, this attorney appears to no longer exist.</p>
+		<?php endwhile; else: ?>
 
-			<?php endif; ?>
+			<p>Sorry, this attorney appears to no longer exist.</p>
 
-	</div>
+		<?php endif; ?>
+
+
 
 
 <?php get_footer(); ?>
