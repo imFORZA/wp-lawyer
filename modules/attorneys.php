@@ -510,6 +510,6 @@ function wplawyer_attorney_email() {
 	$wplawyer_attorney_email = get_post_meta(get_the_ID(), 'wplawyer_attorney_email', true);
 	$wplawyer_attorney_email = $get_agent_email;
 	if ($twplawyer_attorney_email == '') { } else {
-		echo '<span class="agent-email"><a href="mailto:',$wplawyer_attorney_email'">'. $wplawyer_attorney_email .'</a></span>';
+		echo '<span class="agent-email"><a href="mailto:'.$wplawyer_attorney_email.'">'. $wplawyer_attorney_email .'</a></span>';
 	 }
 }
