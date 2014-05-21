@@ -307,3 +307,31 @@ function wplawyer_case_save_data($post_id) {
         }
     }
 }
+
+
+
+################################################################################
+// Template Functions
+################################################################################
+
+// Cases Verdict Price
+function wplawyer_case_verdict_price() {
+	$wplawyer_case_verdict_price = get_post_meta(get_the_ID(), 'wplawyer_case_verdict_price', true);
+	if ($wplawyer_attorney_title == '') { } else {
+		echo '<span id="case-verdict-price">' . $wplawyer_case_verdict_price . '</span>';
+	}
+}
+
+// Case Plantiff
+function wplawyer_case_plantiff() {
+	$wplawyer_case_plantiff = get_post_meta(get_the_ID(), 'wplawyer_case_plantiff', true);
+	if ($wplawyer_case_plantiff == '') { } else {
+		echo '<span id="case-plantiff">' . $wplawyer_case_plantiff . '</span>';	 }
+}
+
+// Case Defendent
+function wplawyer_case_defendent() {
+	$wplawyer_case_defendent = get_post_meta(get_the_ID(), 'wplawyer_case_defendent', true);
+	if ($wplawyer_case_defendent == '') { } else {
+		echo '<span id="case-defendent">' . $wplawyer_case_defendent . '</span>';	 }
+}
