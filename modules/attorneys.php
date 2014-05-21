@@ -576,3 +576,43 @@ function wplawyer_attorney_youtube() {
 	if ($wplawyer_attorney_youtube == '') { } else {
 		echo '<a id="attorney-youtube" class="attorney-social" href="' . $wplawyer_attorney_youtube . '">' . $wplawyer_attorney_youtube . '</a>';	 }
 }
+
+
+
+
+
+
+################################################################################
+// Load Template Files
+################################################################################
+
+add_filter( 'template_include', 'wplawyer_attorney_templates', 1 );
+
+function wplawyer_attorney_templates( $template_path ) {
+    if ( get_post_type() == 'wplawyer-attorney' ) {
+    	// Single Property Template
+        if ( is_single() ) {
+            // checks if the file exists in the theme first,
+            // otherwise serve the file from the plugin
+            if ( $theme_file = locate_template( array ( 'single-wplawyer-attorney.php' ) ) ) {
+                $template_path = $theme_file;
+            } else {
+                $template_path = plugin_dir_path( __FILE__ ) . '../templates/single-wplawyer-attorney.php';
+            }
+        }
+
+        // Archive Template
+        if ( is_archive() ) {
+            // checks if the file exists in the theme first,
+            // otherwise serve the file from the plugin
+            if ( $theme_file = locate_template( array ( 'archive-wplawyer-attorney.php' ) ) ) {
+                $template_path = $theme_file;
+            } else {
+                $template_path = plugin_dir_path( __FILE__ ) . '../templates/archive-wplawyer-attorney.php';
+            }
+        }
+
+
+    }
+    return $template_path;
+}

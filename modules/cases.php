@@ -332,3 +332,41 @@ function wplawyer_case_defendent() {
 	if ($wplawyer_case_defendent == '') { } else {
 		echo '<span id="case-defendent">' . $wplawyer_case_defendent . '</span>';	 }
 }
+
+
+
+
+################################################################################
+// Load Template Files
+################################################################################
+
+add_filter( 'template_include', 'wplawyer_cases_templates', 1 );
+
+function wplawyer_cases_templates( $template_path ) {
+    if ( get_post_type() == 'wplawyer-cases' ) {
+    	// Single Property Template
+        if ( is_single() ) {
+            // checks if the file exists in the theme first,
+            // otherwise serve the file from the plugin
+            if ( $theme_file = locate_template( array ( 'single-wplawyer-cases.php' ) ) ) {
+                $template_path = $theme_file;
+            } else {
+                $template_path = plugin_dir_path( __FILE__ ) . '../templates/single-wplawyer-cases.php';
+            }
+        }
+
+        // Archive Template
+        if ( is_archive() ) {
+            // checks if the file exists in the theme first,
+            // otherwise serve the file from the plugin
+            if ( $theme_file = locate_template( array ( 'archive-wplawyer-cases.php' ) ) ) {
+                $template_path = $theme_file;
+            } else {
+                $template_path = plugin_dir_path( __FILE__ ) . '../templates/archive-wplawyer-cases.php';
+            }
+        }
+
+
+    }
+    return $template_path;
+}
