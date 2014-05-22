@@ -22,7 +22,7 @@
 				<!-- #case type -->
 				
 				<!-- case plaintiff v. defendent -->
-				<p class="case-parties"><?php wplawyer_case_plantiff(); ?>&nbsp;v.&nbsp;<?php wplawyer_case_defendent(); ?></p>
+				<p class="case-parties"><a href="<?php the_permalink(); ?>"><?php wplawyer_case_plantiff(); ?>&nbsp;v.&nbsp;<?php wplawyer_case_defendent(); ?></a></p>
 				<!-- #case plaintiff v. defendent -->
 				
 				<!-- case verdict price -->
