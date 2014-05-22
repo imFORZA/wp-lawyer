@@ -1,6 +1,12 @@
 <?php
 
 ###########################################################
+// Add Image Size for Single Case
+###########################################################
+
+	add_image_size( 'wplawyer-case', 400, 400, true ); // 400 x 400, for the single case pages
+
+###########################################################
 // Register Cases Custom Post Type
 ###########################################################
 if ( ! function_exists('wp_lawyer_cases_cpt') ) {
