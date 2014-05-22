@@ -43,7 +43,7 @@ function wp_lawyer_cases_cpt() {
 		'exclude_from_search' => false,
 		'publicly_queryable'  => true,
 		'capability_type'     => 'page',
-		'rewrite' => array('slug'=>'case', 'with_front' => false)
+		'rewrite' => array('slug'=>'cases', 'with_front' => false)
 	);
 	register_post_type( 'wplawyer-cases', $args );
 
@@ -314,7 +314,7 @@ function wplawyer_case_save_data($post_id) {
 // Cases Verdict Price
 function wplawyer_case_verdict_price() {
 	$wplawyer_case_verdict_price = get_post_meta(get_the_ID(), 'wplawyer_case_verdict_price', true);
-	if ($wplawyer_attorney_title == '') { } else {
+	if ($wplawyer_case_verdict_price == '') { } else {
 		echo '<span id="case-verdict-price">' . $wplawyer_case_verdict_price . '</span>';
 	}
 }
