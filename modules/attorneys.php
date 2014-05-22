@@ -531,14 +531,14 @@ function wplawyer_attorney_email() {
 
 // Attorney Mobile Phone
 function wplawyer_attorney_mobile() {
-	$wplawyer_attorney_mobile = get_post_meta(get_the_ID(), 'wplawyer_attorney_mobile', true);
+	$wplawyer_attorney_mobile = get_post_meta(get_the_ID(), 'wplawyer_attorney_mobile_number', true);
 	if ($wplawyer_attorney_mobile == '') { } else {
 		echo '<a id="attorney-mobile" href="tel:' . $wplawyer_attorney_mobile . '">' . $wplawyer_attorney_mobile . '</a>';	 }
 }
 
 // Attorney Fax
 function wplawyer_attorney_fax() {
-	$wplawyer_attorney_fax = get_post_meta(get_the_ID(), 'wplawyer_attorney_fax', true);
+	$wplawyer_attorney_fax = get_post_meta(get_the_ID(), 'wplawyer_attorney_fax_number', true);
 	if ($wplawyer_attorney_fax == '') { } else {
 		echo '<a id="attorney-fax" href="tel:' . $wplawyer_attorney_fax . '">' . $wplawyer_attorney_fax . '</a>';	 }
 }
