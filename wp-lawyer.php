@@ -40,4 +40,18 @@ function wplawyer_activate() {
 
 }
 
+################################################################################
+// Plugin Styles
+################################################################################
 
+// Register style sheet.
+add_action( 'wp_enqueue_scripts', 'wplawyer_styles' );
+
+function wplawyer_styles() {
+
+		if ( !is_admin() ) {
+
+			wp_register_style('wplawyer', plugins_url ( 'wp-lawyer/assets/css/main.css' ), false, null, 'all');
+			wp_enqueue_style('wplawyer');
+		}
+	}

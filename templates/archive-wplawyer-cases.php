@@ -1,11 +1,3 @@
-<style type="text/css">
-.case-container {
-	width: 33%;
-	padding: 20px;
-	display: inline-block;
-}
-</style>
-
 <?php get_header(); ?>
 
 	<div class="content">
@@ -15,7 +7,7 @@
 		<?php if (have_posts()) : while (have_posts()) : the_post(); ?>
 	
 			<!-- begin case -->
-			<div class="case-container">
+			<div class="wplawyer-case-container">
 
 				<!-- case type -->
 				<h3 class="case-type"><?php echo get_the_term_list( get_the_ID(), 'wplawyer-case-type', ' ', ', ', '' ); ?></h3>
