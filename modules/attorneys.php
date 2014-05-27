@@ -1,6 +1,12 @@
 <?php
 
 ###########################################################
+// Add Image Size for Single Case
+###########################################################
+
+	add_image_size( 'wplawyer-attorney', 200, 400, true ); // 200 x 400, for the attorney archive & single
+
+###########################################################
 // Register Attorneys Custom Post Type
 ###########################################################
 if ( ! function_exists('wp_lawyer_attorneys_cpt') ) {

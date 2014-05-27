@@ -36,3 +36,27 @@
 	display: inline-block;
 }
 
+.attorney-social {
+	list-style: none;
+}
+
+ul.attorney-social {
+	padding: 0;
+}
+
+ul.attorney-social li {
+	display: inline-block;
+	margin: 0 2px;
+}
+
+.wplawyer-attorney-container {
+	display: inline-block;
+	margin: 15px;
+}
+
+.wplawyer-attorney-thumb-single {
+	float: left;
+	padding: 15px;
+	margin-right: 15px;
+}
+
