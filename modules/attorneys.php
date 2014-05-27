@@ -192,6 +192,49 @@ add_action( 'init', 'wplawyer_attorney_county', 0 );
 
 }
 
+###########################################################
+// States of Practice - Taxonomy
+###########################################################
+if ( ! function_exists( 'wplawyer_attorney_state' ) ) {
+
+// Register Custom Taxonomy
+function wplawyer_attorney_state() {
+
+	$labels = array(
+		'name'                       => _x( 'States of Practice', 'Taxonomy General Name', 'wp-lawyer' ),
+		'singular_name'              => _x( 'State', 'Taxonomy Singular Name', 'wp-lawyer' ),
+		'menu_name'                  => __( 'States of Practice', 'wp-lawyer' ),
+		'all_items'                  => __( 'All States', 'wp-lawyer' ),
+		'parent_item'                => __( 'Parent State', 'wp-lawyer' ),
+		'parent_item_colon'          => __( 'Parent State:', 'wp-lawyer' ),
+		'new_item_name'              => __( 'New State', 'wp-lawyer' ),
+		'add_new_item'               => __( 'Add New State', 'wp-lawyer' ),
+		'edit_item'                  => __( 'Edit State', 'wp-lawyer' ),
+		'update_item'                => __( 'Update State', 'wp-lawyer' ),
+		'separate_items_with_commas' => __( 'Separate States with commas', 'wp-lawyer' ),
+		'search_items'               => __( 'Search States', 'wp-lawyer' ),
+		'add_or_remove_items'        => __( 'Add or remove States', 'wp-lawyer' ),
+		'choose_from_most_used'      => __( 'Choose from the most used States', 'wp-lawyer' ),
+		'not_found'                  => __( 'No State Found', 'wp-lawyer' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'wplawyer-attorney-state', array( 'wplawyer-attorney' ), $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'wplawyer_attorney_state', 0 );
+
+}
+
 
 
 ###########################################################
@@ -364,7 +407,7 @@ $wplawyer_attorney_meta_box = array(
             'std' => ''
         ),
         array(
-            'name' => 'Mobile',
+            'name' => 'Phone',
             'id' => $wplawyer_attorney_prefix . 'attorney_mobile_number',
             'type' => 'text',
             'std' => ''
@@ -503,12 +546,26 @@ function wplawyer_attorney_title() {
 	global $wplawyer_attorney_title;
 	$wplawyer_attorney_title = get_post_meta(get_the_ID(), 'wplawyer_attorney_title', true);
 	if ($wplawyer_attorney_title == '') { } else {
+		echo '<span id="attorney-title-label">Title:</span>&nbsp;<span id="attorney-title">' . $wplawyer_attorney_title . '</span>';
+	}
+}
+
+function wplawyer_attorney_title_nolabel() {
+	global $wplawyer_attorney_title;
+	$wplawyer_attorney_title = get_post_meta(get_the_ID(), 'wplawyer_attorney_title', true);
+	if ($wplawyer_attorney_title == '') { } else {
 		echo '<span id="attorney-title">' . $wplawyer_attorney_title . '</span>';
 	}
 }
 
 // Attorney Bar Number
 function wplawyer_attorney_bar_number() {
+	$wplawyer_attorney_barnumber = get_post_meta(get_the_ID(), 'wplawyer_attorney_bar_number', true);
+	if ($wplawyer_attorney_barnumber == '') { } else {
+		echo '<span id="attorney-bar-number-label">Bar Number:</span>&nbsp;<span id="attorney-bar-number">' . $wplawyer_attorney_barnumber . '</span>';	 }
+}
+
+function wplawyer_attorney_bar_number_nolabel() {
 	$wplawyer_attorney_barnumber = get_post_meta(get_the_ID(), 'wplawyer_attorney_bar_number', true);
 	if ($wplawyer_attorney_barnumber == '') { } else {
 		echo '<span id="attorney-bar-number">' . $wplawyer_attorney_barnumber . '</span>';	 }
@@ -518,11 +575,24 @@ function wplawyer_attorney_bar_number() {
 function wplawyer_attorney_address() {
 	$wplawyer_attorney_address = get_post_meta(get_the_ID(), 'wplawyer_attorney_address', true);
 	if ($wplawyer_attorney_address == '') { } else {
+		echo '<span id="attorney-address-label">Location:</span>&nbsp;<span id="attorney-address">' . $wplawyer_attorney_address . '</span>';	 }
+}
+
+function wplawyer_attorney_address_nolabel() {
+	$wplawyer_attorney_address = get_post_meta(get_the_ID(), 'wplawyer_attorney_address', true);
+	if ($wplawyer_attorney_address == '') { } else {
 		echo '<span id="attorney-address">' . $wplawyer_attorney_address . '</span>';	 }
 }
 
 // Attorney Email
 function wplawyer_attorney_email() {
+	$wplawyer_attorney_email = get_post_meta(get_the_ID(), 'wplawyer_attorney_email', true);
+	if ($wplawyer_attorney_email == '') { } else {
+		echo '<span id="attorney-email-label">Email:</span>&nbsp;<a id="attorney-email" href="mailto:'. antispambot($wplawyer_attorney_email) .'">'. antispambot($wplawyer_attorney_email) .'</a>';
+	 }
+}
+
+function wplawyer_attorney_email_nolabel() {
 	$wplawyer_attorney_email = get_post_meta(get_the_ID(), 'wplawyer_attorney_email', true);
 	if ($wplawyer_attorney_email == '') { } else {
 		echo '<a id="attorney-email" href="mailto:'. antispambot($wplawyer_attorney_email) .'">'. antispambot($wplawyer_attorney_email) .'</a>';
@@ -533,11 +603,23 @@ function wplawyer_attorney_email() {
 function wplawyer_attorney_mobile() {
 	$wplawyer_attorney_mobile = get_post_meta(get_the_ID(), 'wplawyer_attorney_mobile_number', true);
 	if ($wplawyer_attorney_mobile == '') { } else {
+		echo '<span id="attorney-mobile-label">Phone:</span>&nbsp;<a id="attorney-mobile" href="tel:' . $wplawyer_attorney_mobile . '">' . $wplawyer_attorney_mobile . '</a>';	 }
+}
+
+function wplawyer_attorney_mobile_nolabel() {
+	$wplawyer_attorney_mobile = get_post_meta(get_the_ID(), 'wplawyer_attorney_mobile_number', true);
+	if ($wplawyer_attorney_mobile == '') { } else {
 		echo '<a id="attorney-mobile" href="tel:' . $wplawyer_attorney_mobile . '">' . $wplawyer_attorney_mobile . '</a>';	 }
 }
 
 // Attorney Fax
 function wplawyer_attorney_fax() {
+	$wplawyer_attorney_fax = get_post_meta(get_the_ID(), 'wplawyer_attorney_fax_number', true);
+	if ($wplawyer_attorney_fax == '') { } else {
+		echo '<span id="attorney-fax-label">Fax:</span>&nbsp;<a id="attorney-fax" href="tel:' . $wplawyer_attorney_fax . '">' . $wplawyer_attorney_fax . '</a>';	 }
+}
+
+function wplawyer_attorney_fax_nolabel() {
 	$wplawyer_attorney_fax = get_post_meta(get_the_ID(), 'wplawyer_attorney_fax_number', true);
 	if ($wplawyer_attorney_fax == '') { } else {
 		echo '<a id="attorney-fax" href="tel:' . $wplawyer_attorney_fax . '">' . $wplawyer_attorney_fax . '</a>';	 }
@@ -547,11 +629,23 @@ function wplawyer_attorney_fax() {
 function wplawyer_attorney_website() {
 	$wplawyer_attorney_website = get_post_meta(get_the_ID(), 'wplawyer_attorney_website', true);
 	if ($wplawyer_attorney_website == '') { } else {
+		echo '<span id="attorney-website-label">Website:</span>&nbsp;<a id="attorney-website" href="//' . $wplawyer_attorney_website . '">' . $wplawyer_attorney_website . '</a>';	 }
+}
+
+function wplawyer_attorney_website_nolabel() {
+	$wplawyer_attorney_website = get_post_meta(get_the_ID(), 'wplawyer_attorney_website', true);
+	if ($wplawyer_attorney_website == '') { } else {
 		echo '<a id="attorney-website" href="//' . $wplawyer_attorney_website . '">' . $wplawyer_attorney_website . '</a>';	 }
 }
 
 // Attorney Facebook
 function wplawyer_attorney_facebook() {
+	$wplawyer_attorney_facebook = get_post_meta(get_the_ID(), 'wplawyer_attorney_facebook', true);
+	if ($wplawyer_attorney_facebook == '') { } else {
+		echo '<span id="attorney-facebook-label">Facebook:</span>&nbsp;<a id="attorney-facebook" class="attorney-social" href="//' . $wplawyer_attorney_facebook . '">' . $wplawyer_attorney_facebook . '</a>';	 }
+}
+
+function wplawyer_attorney_facebook_nolabel() {
 	$wplawyer_attorney_facebook = get_post_meta(get_the_ID(), 'wplawyer_attorney_facebook', true);
 	if ($wplawyer_attorney_facebook == '') { } else {
 		echo '<a id="attorney-facebook" class="attorney-social" href="//' . $wplawyer_attorney_facebook . '">' . $wplawyer_attorney_facebook . '</a>';	 }
@@ -561,11 +655,23 @@ function wplawyer_attorney_facebook() {
 function wplawyer_attorney_twitter() {
 	$wplawyer_attorney_twitter = get_post_meta(get_the_ID(), 'wplawyer_attorney_twitter', true);
 	if ($wplawyer_attorney_twitter == '') { } else {
+		echo '<span id="attorney-twitter-label">Twitter:</span>&nbsp;<a id="attorney-twitter" class="attorney-social" href="//' . $wplawyer_attorney_twitter . '">' . $wplawyer_attorney_twitter . '</a>';	 }
+}
+
+function wplawyer_attorney_twitter_nolabel() {
+	$wplawyer_attorney_twitter = get_post_meta(get_the_ID(), 'wplawyer_attorney_twitter', true);
+	if ($wplawyer_attorney_twitter == '') { } else {
 		echo '<a id="attorney-twitter" class="attorney-social" href="//' . $wplawyer_attorney_twitter . '">' . $wplawyer_attorney_twitter . '</a>';	 }
 }
 
 // Attorney LinkedIn
 function wplawyer_attorney_linkedin() {
+	$wplawyer_attorney_linkedin = get_post_meta(get_the_ID(), 'wplawyer_attorney_linkedin', true);
+	if ($wplawyer_attorney_linkedin == '') { } else {
+		echo '<span id="attorney-linkedin-label">Linkedin:</span>&nbsp;<a id="attorney-linkedin" class="attorney-social" href="//' . $wplawyer_attorney_linkedin . '">' . $wplawyer_attorney_linkedin . '</a>';	 }
+}
+
+function wplawyer_attorney_linkedin_nolabel() {
 	$wplawyer_attorney_linkedin = get_post_meta(get_the_ID(), 'wplawyer_attorney_linkedin', true);
 	if ($wplawyer_attorney_linkedin == '') { } else {
 		echo '<a id="attorney-linkedin" class="attorney-social" href="//' . $wplawyer_attorney_linkedin . '">' . $wplawyer_attorney_linkedin . '</a>';	 }
@@ -575,9 +681,14 @@ function wplawyer_attorney_linkedin() {
 function wplawyer_attorney_youtube() {
 	$wplawyer_attorney_youtube = get_post_meta(get_the_ID(), 'wplawyer_attorney_youtube', true);
 	if ($wplawyer_attorney_youtube == '') { } else {
-		echo '<a id="attorney-youtube" class="attorney-social" href="//' . $wplawyer_attorney_youtube . '">' . $wplawyer_attorney_youtube . '</a>';	 }
+		echo '<span id="attorney-youtube-label">YouTube</span>&nbsp;<a id="attorney-youtube" class="attorney-social" href="//' . $wplawyer_attorney_youtube . '">' . $wplawyer_attorney_youtube . '</a>';	 }
 }
 
+function wplawyer_attorney_youtube_nolabel() {
+	$wplawyer_attorney_youtube = get_post_meta(get_the_ID(), 'wplawyer_attorney_youtube', true);
+	if ($wplawyer_attorney_youtube == '') { } else {
+		echo '<a id="attorney-youtube" class="attorney-social" href="//' . $wplawyer_attorney_youtube . '">' . $wplawyer_attorney_youtube . '</a>';	 }
+}
 
 
 

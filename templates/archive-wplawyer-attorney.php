@@ -36,6 +36,7 @@
 		<li><strong>Areas of Practice: <?php echo get_the_term_list( get_the_ID(), 'wplawyer-practice-area', ' ', ', ', '' ); ?></li>
 		<li><strong>Cities of Practice: <?php echo get_the_term_list( get_the_ID(), 'wplawyer-attorney-city', ' ', ', ', '' ); ?></li>
 		<li><strong>Counties of Practice: <?php echo get_the_term_list( get_the_ID(), 'wplawyer-attorney-county', ' ', ', ', '' ); ?></li>
+		<li><strong>States of Practice: </strong><?php echo get_the_term_list( get_the_ID(), 'wplawyer-attorney-state', ' ', ', ', '' ); ?></li>
 		<li><strong>Districts: </strong><?php echo get_the_term_list( get_the_ID(), 'wplawyer-attorney-district', ' ', ', ', '' ); ?></li>
 		<li><strong>Law School: </strong><?php echo get_the_term_list( get_the_ID(), 'wplawyer-attorney-lawschool', ' ', ', ', '' ); ?></li>
 		<li><strong>Undergrad School: </strong><?php echo get_the_term_list( get_the_ID(), 'wplawyer-attorney-undergrad', ' ', ', ', '' ); ?></li>
