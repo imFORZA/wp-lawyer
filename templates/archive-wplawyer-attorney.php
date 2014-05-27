@@ -4,7 +4,7 @@
 			
 			
 			
-			<h1>Attorneys for <?php $term = $wp_query->queried_object; echo $term->name; ?> </h1>
+			<h1>Attorneys</h1>
 			
 			
 			

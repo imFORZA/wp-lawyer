@@ -500,9 +500,9 @@ function wplawyer_attorney_save_data($post_id) {
 
 // Attorney Title
 function wplawyer_attorney_title() {
-	global $plawyer_attorney_title;
+	global $wplawyer_attorney_title;
 	$wplawyer_attorney_title = get_post_meta(get_the_ID(), 'wplawyer_attorney_title', true);
-	if ($plawyer_attorney_title == '') { } else {
+	if ($wplawyer_attorney_title == '') { } else {
 		echo '<span id="attorney-title">' . $wplawyer_attorney_title . '</span>';
 	}
 }
