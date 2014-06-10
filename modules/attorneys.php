@@ -374,6 +374,93 @@ add_action( 'init', 'wplawyer_attorney_undergraduateschool', 0 );
 
 }
 
+################################################################################
+// Languages - Taxonomy
+################################################################################
+if ( ! function_exists( 'wplawyer_attorney_languages' ) ) {
+
+// Register Custom Taxonomy
+function wplawyer_attorney_languages() {
+
+	$labels = array(
+		'name'                       => _x( 'Languages', 'Taxonomy General Name', 'wp-lawyer' ),
+		'singular_name'              => _x( 'Language', 'Taxonomy Singular Name', 'wp-lawyer' ),
+		'menu_name'                  => __( 'Languages', 'wp-lawyer' ),
+		'all_items'                  => __( 'All Languages', 'wp-lawyer' ),
+		'parent_item'                => __( 'Parent Language', 'wp-lawyer' ),
+		'parent_item_colon'          => __( 'Parent Language:', 'wp-lawyer' ),
+		'new_item_name'              => __( 'New Language', 'wp-lawyer' ),
+		'add_new_item'               => __( 'Add Language', 'wp-lawyer' ),
+		'edit_item'                  => __( 'Edit Language', 'wp-lawyer' ),
+		'update_item'                => __( 'Update Language', 'wp-lawyer' ),
+		'separate_items_with_commas' => __( 'Separate Languages with commas', 'wp-lawyer' ),
+		'search_items'               => __( 'Search Languages', 'wp-lawyer' ),
+		'add_or_remove_items'        => __( 'Add or remove Languages', 'wp-lawyer' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Languages', 'wp-lawyer' ),
+		'not_found'                  => __( 'No Languages Found', 'wp-lawyer' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'wplawyer-attorney-languages', array( 'wplawyer-attorney' ), $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'wplawyer_attorney_languages', 0 );
+
+}
+
+
+################################################################################
+// Associations - Taxonomy
+################################################################################
+if ( ! function_exists( 'wplawyer_attorney_associations' ) ) {
+
+// Register Custom Taxonomy
+function wplawyer_attorney_associations() {
+
+	$labels = array(
+		'name'                       => _x( 'Associations', 'Taxonomy General Name', 'wp-lawyer' ),
+		'singular_name'              => _x( 'Association', 'Taxonomy Singular Name', 'wp-lawyer' ),
+		'menu_name'                  => __( 'Associations', 'wp-lawyer' ),
+		'all_items'                  => __( 'All Associations', 'wp-lawyer' ),
+		'parent_item'                => __( 'Parent Association', 'wp-lawyer' ),
+		'parent_item_colon'          => __( 'Parent Association:', 'wp-lawyer' ),
+		'new_item_name'              => __( 'New Association', 'wp-lawyer' ),
+		'add_new_item'               => __( 'Add Association', 'wp-lawyer' ),
+		'edit_item'                  => __( 'Edit Association', 'wp-lawyer' ),
+		'update_item'                => __( 'Update Association', 'wp-lawyer' ),
+		'separate_items_with_commas' => __( 'Separate Associations with commas', 'wp-lawyer' ),
+		'search_items'               => __( 'Search Associations', 'wp-lawyer' ),
+		'add_or_remove_items'        => __( 'Add or remove Associations', 'wp-lawyer' ),
+		'choose_from_most_used'      => __( 'Choose from the most used Associations', 'wp-lawyer' ),
+		'not_found'                  => __( 'No Associations Found', 'wp-lawyer' ),
+	);
+	$args = array(
+		'labels'                     => $labels,
+		'hierarchical'               => false,
+		'public'                     => true,
+		'show_ui'                    => true,
+		'show_admin_column'          => true,
+		'show_in_nav_menus'          => true,
+		'show_tagcloud'              => true,
+	);
+	register_taxonomy( 'wplawyer-attorney-associations', array( 'wplawyer-attorney' ), $args );
+
+}
+
+// Hook into the 'init' action
+add_action( 'init', 'wplawyer_attorney_associations', 0 );
+
+}
+
 
 ################################################################################
 // Setup Meta Boxes
