@@ -36,9 +36,20 @@ register_activation_hook( __FILE__, 'wplawyer_activate' );
 function wplawyer_activate() {
     global $wpdb;
 
-
+    flush_rewrite_rules();
 
 }
+
+################################################################################
+// Plugin Deactivation
+################################################################################
+register_deactivation_hook( __FILE__, 'wplawyer_deactivation' );
+
+function wplawyer_deactivation() {
+
+		flush_rewrite_rules();
+}
+
 
 ################################################################################
 // Plugin Styles
