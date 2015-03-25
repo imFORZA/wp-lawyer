@@ -540,6 +540,12 @@ $wplawyer_attorney_meta_box = array(
             'id' => $wplawyer_attorney_prefix . 'attorney_youtube',
             'type' => 'text',
             'std' => ''
+        ),
+        array(
+            'name' => 'Super Lawyers URL',
+            'id' => $wplawyer_attorney_prefix . 'superlawyers_url',
+            'type' => 'text',
+            'std' => ''
         )
     )
 );
