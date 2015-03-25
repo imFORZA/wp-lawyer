@@ -33,7 +33,7 @@ function wp_lawyer_attorneys_cpt() {
 		'label'               => __( 'attorney', 'wp-lawyer' ),
 		'description'         => __( 'Attorney', 'wp-lawyer' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'publicize', 'wpcom-markdown'  ),
+		'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'publicize', 'wpcom-markdown', 'custom-fields'  ),
 		'taxonomies'          => array( 'practice-type' ),
 		'hierarchical'        => false,
 		'public'              => true,
@@ -98,7 +98,7 @@ function wp_lawyer_attorneys_practicearea() {
 		'rewrite' => array('slug'=>'attorneys/area-of-practice', 'with_front' => false)
 	);
 	register_taxonomy( 'wplawyer-practice-area', array( 'wplawyer-attorney' ), $args );
-	
+
 	wp_insert_term('Car Accidents', 'wplawyer-practice-area');
 	wp_insert_term('Burn Injury', 'wplawyer-practice-area');
 	wp_insert_term('Workers\' Compensation Law', 'wplawyer-practice-area');
@@ -597,29 +597,29 @@ add_action('save_post', 'wplawyer_attorney_save_data');
 
 function wplawyer_attorney_save_data($post_id) {
     global $wplawyer_attorney_meta_box;
-    
+
     // Verify Nonce
     if ( isset($_POST['wplawyer_attorney_meta_box_nonce']) && !wp_verify_nonce( $_POST['wplawyer_attorney_meta_box_nonce'], basename(__FILE__))) {
         return $post_id;
     }
-    
+
     // check autosave
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
     return;
-    
+
     // check permissions
     if (!current_user_can('edit_post', $post_id))
     return;
-    
+
     foreach ($wplawyer_attorney_meta_box['fields'] as $field) {
         $wplawyer_attorney_old = get_post_meta($post_id, $field['id'], true);
-        
+
         if (!empty($_POST[$field['id']])) {
-		$wplawyer_attorney_new = $_POST[$field['id']];   
+		$wplawyer_attorney_new = $_POST[$field['id']];
 		} else {
 			$wplawyer_attorney_new = '';
 		}
-		
+
         if ( $wplawyer_attorney_new && $wplawyer_attorney_new != $wplawyer_attorney_old) {
             update_post_meta($post_id, $field['id'], $wplawyer_attorney_new);
         } elseif ('' == $wplawyer_attorney_new && $wplawyer_attorney_old) {

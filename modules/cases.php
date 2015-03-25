@@ -33,7 +33,7 @@ function wp_lawyer_cases_cpt() {
 		'label'               => __( 'cases', 'wp-lawyer' ),
 		'description'         => __( 'Cases', 'wp-lawyer' ),
 		'labels'              => $labels,
-		'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'publicize', 'wpcom-markdown'  ),
+		'supports'            => array( 'title', 'editor', 'excerpt', 'thumbnail', 'revisions', 'publicize', 'wpcom-markdown', 'custom-fields'  ),
 		'taxonomies'          => array( 'case-type' ),
 		'hierarchical'        => false,
 		'public'              => true,
@@ -144,7 +144,7 @@ function wplawyer_case_resolution() {
 		'rewrite' => array('slug'=>'cases/resolution', 'with_front' => false)
 	);
 	register_taxonomy( 'wplawyer-case-resolution', array( 'wplawyer-cases' ), $args );
-	
+
 	wp_insert_term('Settlement', 'wplawyer-case-resolution');
 	wp_insert_term('Jury Verdict', 'wplawyer-case-resolution');
 
@@ -281,7 +281,7 @@ add_action('save_post', 'wplawyer_case_save_data');
 
 function wplawyer_case_save_data($post_id) {
     global $wplawyer_case_meta_box;
-    
+
     // verify nonce
     if (isset($_POST['wplawyer_case_meta_box_nonce']) && !wp_verify_nonce( $_POST['wplawyer_case_meta_box_nonce'], basename(__FILE__))) {
         return $post_id;
@@ -289,16 +289,16 @@ function wplawyer_case_save_data($post_id) {
     // check autosave
     if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
     return;
-    
+
     // check permissions
     if (!current_user_can('edit_post', $post_id))
     return;
-    
+
     foreach ($wplawyer_case_meta_box['fields'] as $field) {
         $wplawyer_case_old = get_post_meta($post_id, $field['id'], true);
-        
+
         if (!empty($_POST[$field['id']])) {
-			   $wplawyer_case_new = $_POST[$field['id']]; 
+			   $wplawyer_case_new = $_POST[$field['id']];
 		} else {
 			$wplawyer_case_new = '';
 		}

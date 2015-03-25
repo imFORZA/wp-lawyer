@@ -66,3 +66,4 @@ function wplawyer_styles() {
 			wp_enqueue_style('wplawyer');
 		}
 	}
+
